@@ -13,12 +13,12 @@
 
         browser->>browser: Reload Notes page
 
-        Note right of browser: browser reloading causes 3 more get requests to happen
-
         browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
         activate server
         server->>browser: HTML Document
         deactivate server
+
+        Note right of browser: browser reloading causes 3 more get requests to happen
 
         browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
         activate server
