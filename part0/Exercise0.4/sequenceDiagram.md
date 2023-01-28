@@ -22,16 +22,20 @@
 
         browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
         activate server
-        server->>browser: The CSS File
+        server->>browser: The CSS File(main.css)
         deactivate server
 
         browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
         activate server
-        server->>browser: The Javascript File
+        server->>browser: The Javascript File(main.js)
         deactivate server
+
+        Note right of browser: browser executes the js code to fetch the data in a json file
 
         browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
         activate server
-        server->>browser: The Json File
+        server->>browser: The Json File(data.json)
         deactivate server
+
+        Note right of browser: The browser executes the callback function that renders the notes
 ```
