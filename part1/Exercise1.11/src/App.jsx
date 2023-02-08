@@ -33,7 +33,7 @@ const StatTable = ({Statistics}) => {
       </tr>
       <tr>
         <td>positive</td>
-        <td>{Statistics.positive? Statistics.positive : 0}</td>
+        <td>{Statistics.positive? Statistics.positive : 0}%</td>
       </tr>
     </tbody>
   </table>
@@ -59,9 +59,9 @@ function App() {
   return (
     <div className="App">
       <h2>give feedback</h2>
-      <Button onClick={() => setGood(good + 1)} text={'good'} />
-      <Button onClick={() => setNeutral(neutral + 1)} text={'neutral'} />
-      <Button onClick={() => setBad(bad + 1)} text={'bad'} />
+      <Button handler={() => setGood(good + 1)} text={'good'} />
+      <Button handler={() => setNeutral(neutral + 1)} text={'neutral'} />
+      <Button handler={() => setBad(bad + 1)} text={'bad'} />
 
       <h2>statistics {good}</h2>
       <StatTable Statistics={Stat}/>
