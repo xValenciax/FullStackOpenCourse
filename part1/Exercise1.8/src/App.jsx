@@ -1,22 +1,18 @@
 import { useState } from 'react';
 
 const Statistics = ({feedback}) => {
-  if(feedback[0] || feedback[1] || feedback[2]){
+  const all = feedback[0] + feedback[1] + feedback[2];
+  const average = (feedback[0] - feedback[2]) / all;
+  const positive = feedback[0] / all * 100;
 
-    const all = feedback[0] + feedback[1] + feedback[2];
-    const average = (feedback[0] - feedback[2]) / all;
-    const positive = feedback[0] / all * 100;
-
-    return <div>
-      <p>good {feedback[0]}</p>
-      <p>neutral {feedback[1]}</p>
-      <p>bad {feedback[2]}</p>
-      <p>all {all}</p>
-      <p>average {average}</p>
-      <p>positive {positive}%</p>
-    </div>
-  }
-  return <p>No feedback given</p>
+  return <div>
+    <p>good {feedback[0]}</p>
+    <p>neutral {feedback[1]}</p>
+    <p>bad {feedback[2]}</p>
+    <p>all {all}</p>
+    <p>average {average}</p>
+    <p>positive {positive}%</p>
+  </div>
 }
 
 function App() {
