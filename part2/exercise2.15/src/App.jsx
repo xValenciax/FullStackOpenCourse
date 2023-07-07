@@ -51,6 +51,8 @@ const App = () => {
 						person.id === changedPerson.id ? returnedPerson : person
 					)
 				);
+				setNewName('');
+				setNewNumber('');
 			});
 			return;
 		}
@@ -73,12 +75,12 @@ const App = () => {
 	};
 
 	const deletePerson = (id) => {
-		personService.remove(id).then(() => {
-			const deletedPerson = persons.find((person) => person.id === id);
-
-			if (window.confirm(`Delete ${deletedPerson.name} ?`))
+		const deletedPerson = persons.find((person) => person.id === id);
+		if (window.confirm(`Delete ${deletedPerson.name} ?`)) {
+			personService.remove(id).then(() => {
 				setPersons(persons.filter((person) => person.id !== id));
-		});
+			});
+		}
 	};
 
 	const finalList = filterValue

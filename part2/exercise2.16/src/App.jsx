@@ -52,9 +52,11 @@ const App = () => {
 						person.id === changedPerson.id ? returnedPerson : person
 					)
 				);
+				setMessage(`${changedPerson.name}'s number is changed successfully`);
+				setNewName('');
+				setNewNumber('');
+				setTimeout(() => setMessage(null), 5000);
 			});
-			setMessage(`${changedPerson.name}'s number is changed successfully`);
-			setTimeout(() => setMessage(null), 5000);
 			return;
 		}
 		if (ps) {
@@ -78,15 +80,14 @@ const App = () => {
 	};
 
 	const deletePerson = (id) => {
-		personService.remove(id).then(() => {
-			const deletedPerson = persons.find((person) => person.id === id);
-
-			if (window.confirm(`Delete ${deletedPerson.name} ?`)) {
+		const deletedPerson = persons.find((person) => person.id === id);
+		if (window.confirm(`Delete ${deletedPerson.name} ?`)) {
+			personService.remove(id).then(() => {
 				setPersons(persons.filter((person) => person.id !== id));
 				setMessage(`${deletedPerson.name} is deleted successfully`);
 				setTimeout(() => setMessage(null), 5000);
-			}
-		});
+			});
+		}
 	};
 
 	const finalList = filterValue
