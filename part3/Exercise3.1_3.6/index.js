@@ -3,7 +3,7 @@ const app = express();
 
 app.use(express.json());
 
-const persons = [
+let persons = [
 	{
 		id: 1,
 		name: 'Arto Hellas',
@@ -39,6 +39,15 @@ app.get('/info', (req, res) => {
 			<p>${DateNow} ${TimeNow}</p>
 		</div>`
 	);
+});
+
+app.get('/api/persons/:id', (req, res) => {
+	const id = Number(req.params.id);
+	const person = persons.find((person) => person.id === id);
+
+	if (person) return res.status(200).send(person);
+
+	res.status(404).send('Invalid Id Provided').end();
 });
 
 const PORT = 3001;
