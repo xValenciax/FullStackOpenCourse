@@ -50,6 +50,13 @@ app.get('/api/persons/:id', (req, res) => {
 	res.status(404).send('Invalid Id Provided').end();
 });
 
+app.delete('/api/persons/:id', (req, res) => {
+	const id = Number(req.params.id);
+	persons = persons.filter((note) => note.id !== id);
+
+	res.status(204).end();
+});
+
 const PORT = 3001;
 
 app.listen(PORT, () => {
