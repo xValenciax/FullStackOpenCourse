@@ -63,6 +63,12 @@ app.post('/api/persons', (req, res) => {
 	const name = data.name;
 	const number = data.number;
 
+	if (!name | !number)
+		return res.status(400).json({ error: 'Required Fields Are Missing' });
+
+	if (persons.find((person) => person.name === name))
+		return res.status(409).json({ error: 'Name Must Be Unique' });
+
 	const newPerson = {
 		id,
 		name,
