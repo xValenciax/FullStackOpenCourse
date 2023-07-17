@@ -57,6 +57,23 @@ app.delete('/api/persons/:id', (req, res) => {
 	res.status(204).end();
 });
 
+app.post('/api/persons', (req, res) => {
+	const data = req.body;
+	const id = Math.floor(Math.random() * 100 + 1);
+	const name = data.name;
+	const number = data.number;
+
+	const newPerson = {
+		id,
+		name,
+		number,
+	};
+
+	persons = persons.concat(newPerson);
+
+	res.status(201).send(persons);
+});
+
 const PORT = 3001;
 
 app.listen(PORT, () => {
