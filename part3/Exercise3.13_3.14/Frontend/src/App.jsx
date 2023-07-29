@@ -39,40 +39,6 @@ const App = () => {
 		e.preventDefault();
 		const ps = persons.find((person) => person.name === newName);
 
-		// if (
-		// 	ps &&
-		// 	ps.phone !== newNumber &&
-		// 	window.confirm(
-		// 		`${newName} is already added to PhoneBook, replace the old number with the new one?`
-		// 	)
-		// ) {
-		// 	const changedPerson = { ...ps, number: newNumber };
-		// 	personService
-		// 		.update(ps.id, changedPerson)
-		// 		.then((returnedPerson) => {
-		// 			setPersons(
-		// 				persons.map((person) =>
-		// 					person.id === changedPerson.id ? returnedPerson : person
-		// 				)
-		// 			);
-		// 			setStatus(true);
-		// 			setMessage(`${changedPerson.name}'s number is changed successfully`);
-		// 			setNewName('');
-		// 			setNewNumber('');
-		// 			setTimeout(() => setMessage(null), 5000);
-		// 		})
-		// 		.catch((error) => {
-		// 			setStatus(false);
-		// 			setNewName('');
-		// 			setNewNumber('');
-		// 			setPersons(
-		// 				persons.filter((person) => person.id !== changedPerson.id)
-		// 			);
-		// 			setMessage(`${changedPerson.name}'s already deleted\n${error}`);
-		// 			setTimeout(() => setMessage(null), 5000);
-		// 		});
-		// 	return;
-		// }
 		if (ps) {
 			window.alert(
 				`${newName} is already added to PhoneBook with the same phone number`
