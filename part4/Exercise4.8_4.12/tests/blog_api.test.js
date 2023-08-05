@@ -88,6 +88,18 @@ describe('api', () => {
 		});
 		expect(blog_added_with_no_likes.likes).toBe(0);
 	});
+
+	test('response status is 400 Bad Request if title or url is missing', async () => {
+		const invalidBlog = {
+			author: 'Robert C. Martin',
+			likes: 2,
+		};
+
+		await api.post('/api/blogs').send(invalidBlog).expect(400);
+
+		const blogsAtEnd = await Blog.find({});
+		expect(blogsAtEnd).toHaveLength(initialBlogs.length);
+	});
 });
 
 afterAll(async () => {
