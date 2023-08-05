@@ -60,11 +60,33 @@ describe('api', () => {
 			.expect(201)
 			.expect('Content-Type', /application\/json/);
 
-		const notesAtEnd = await Blog.find({});
-		expect(notesAtEnd).toHaveLength(initialBlogs.length + 1);
+		const blogsAtEnd = await Blog.find({});
+		expect(blogsAtEnd).toHaveLength(initialBlogs.length + 1);
 
-		const titles = notesAtEnd.map((b) => b.title);
+		const titles = blogsAtEnd.map((b) => b.title);
 		expect(titles).toContain(newBlog.title);
+	});
+
+	test('likes default to 0 if not defined in request body', async () => {
+		const blogWithNoLikes = {
+			title: 'TDD harms architecture',
+			author: 'Robert C. Martin',
+			url: 'http://blog.cleancoder.com/uncle-bob/2017/03/03/TDD-Harms-Architecture.html',
+		};
+
+		await api
+			.post('/api/blogs')
+			.send(blogWithNoLikes)
+			.expect(201)
+			.expect('Content-Type', /application\/json/);
+
+		const blogsAtEnd = await Blog.find({});
+		expect(blogsAtEnd).toHaveLength(initialBlogs.length + 1);
+
+		const blog_added_with_no_likes = await Blog.findOne({
+			title: 'TDD harms architecture',
+		});
+		expect(blog_added_with_no_likes.likes).toBe(0);
 	});
 });
 
